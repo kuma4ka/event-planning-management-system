@@ -1,0 +1,174 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 3em;
+    color: #222;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Details Container */
+.event-details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    max-width: 1500px;
+    max-height: 500px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.section-element {
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.1), rgba(255, 255, 255, 0.1));
+
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin: 0 10px 10px 10px;
+    min-height: 450px;
+    min-width: 400px;
+    position: relative; /* To control overflow */
+    
+}
+
+/* Headings within section-element */
+.section-element h2 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    word-wrap: break-word;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Event Name, Venue Heading, Guests Heading */
+.event-name, .venue-heading, .guests-heading {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Event Date, Type, Description */
+.event-date, .event-type, .event-description {
+    font-size: 1.3em;
+    color: #555;
+    margin: 8px 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition with easing */
+    cursor: pointer;
+}
+
+.event-description:hover {
+    white-space: normal;
+    text-overflow: clip;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure it appears above other elements */
+    overflow: auto; /* Allow scrolling if content is too long */
+    transition: all 0.5s cubic-bezier(0.25, 0.25, 0.25, 0.25); /* Smoother transition with easing */
+}
+
+
+/* Venue Details */
+.venue-name, .venue-address {
+    font-size: 1.3em;
+    color: #555;
+    margin: 8px 0;
+}
+
+.venue-image {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.no-venue, .no-guests {
+    color: #666;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+/* Guests Details */
+.guests-details {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.guests-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.guest-item {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: #555;
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.guest-item:hover {
+    background-color: #e0f7fa;
+    transform: translateY(-3px);
+}
+
+.guest-emoji {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+/* Links */
+.links {
+    text-align: center;
+}
+
+.link {
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.3), rgba(255, 255, 255, 0.3));
+    display: inline-block;
+    margin: 15px;
+    color: #007bff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.link:hover {
+    background-color: #0056b3;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.link:active {
+    background-color: #003d7a;
+    color: #fff;
+}

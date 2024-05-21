@@ -1,0 +1,140 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
+    margin: 30px auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Overflow control */
+    text-overflow: ellipsis; /* Handle text overflow */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Form Container */
+.edit-form-container {
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Form Labels */
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Form Inputs, Selects, Textareas */
+.form-input,
+.form-date,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+.form-input:focus,
+.form-date:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Validation Messages */
+.form-validation {
+    color: #d9534f;
+    font-size: 0.9em;
+}
+
+/* Textarea */
+.form-textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Buttons */
+.btn-save {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-right: 20px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-save:active {
+    background-color: #003d7a;
+}
+
+/* Return Link */
+.return-link {
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.return-link:hover {
+    color: #0056b3;
+}
+
+/* Alert box styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Navigation */
+.nav-links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.navs {
+    align-items: center;
+}
+
+.submit-button {
+    margin-right: 20px;
+}

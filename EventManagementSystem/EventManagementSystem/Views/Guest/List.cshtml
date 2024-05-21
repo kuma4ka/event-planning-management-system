@@ -1,0 +1,37 @@
+@model EventManagementSystem.Models.GuestListViewModel
+
+<link rel="stylesheet" href="~/css/user/shared-styles.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/guest/view-guests.css" asp-append-version="true">
+
+<h1>Guests</h1>
+
+<nav class="links-controller">
+    <a asp-controller="Guest" asp-action="Create" asp-route-eventId="@Model.Event?.EventId" class="link-controller">Add a guest</a>
+    <a asp-controller="Event" asp-action="List" class="link-controller">Return to Event List</a>
+</nav>
+
+<section class="guests-grid">
+    @if (Model.Guests != null && Model.Guests.Any())
+    {
+        foreach (var guest in Model.Guests)
+        {
+            <div class="guest">
+                <div class="guest-info"></div>
+                <p class="name"><strong>@guest.FirstName @guest.LastName</strong></p>
+                <p><strong>Email:</strong> @guest.Email</p>
+                <p><strong>Phone Number:</strong> @guest.PhoneNumber</p>
+                <nav class="links">
+                    <form asp-controller="Guest" asp-action="DeleteConfirmed" method="post">
+                        <input type="hidden" name="guestId" value="@guest.GuestId"/>
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                    <a asp-controller="Guest" asp-action="Edit" asp-route-guestId="@guest.GuestId" class="edit-link">Edit</a>
+                </nav>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="no-guests-message">No guests found.</p>
+    }
+</section>

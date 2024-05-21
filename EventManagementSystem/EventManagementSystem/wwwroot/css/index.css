@@ -1,0 +1,137 @@
+/* index.css */
+h1 {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 32px; /* Adjust font size */
+    color: #2a4ba6; /* Change heading color */
+}
+
+/* CSS for header section */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    text-align: center;
+}
+
+.section-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-create-event {
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.8), rgba(255, 255, 255, 0.8));
+    color: #2a4ba6; /* Change text color to match background */
+    border: 1px solid #2a4ba6; /* Add blue border */
+    cursor: pointer;
+    margin: 50px 0;
+    padding: 15px 30px; /* Adjust padding */
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.btn-create-event:hover {
+    background-color: rgba(203, 203, 255, 0.9); /* Adjust hover background */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Flex container for the content */
+.content {
+    display: flex;
+    background: white;
+    justify-content: space-between;
+    gap: 20px; /* Add gap between sections */
+    padding: 20px; /* Add padding */
+}
+
+/* CSS for popular destinations and top airlines sections */
+.popular-events,
+.about-us {
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.4), rgba(255, 255, 255, 0.3));
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.popular-events {
+    width: 75%; /* Adjust width */
+}
+
+.about-us {
+    width: 23%; /* Adjust width */
+    margin-left: 20px; /* Adjust margin */
+}
+
+/* CSS for section headings */
+.popular-events h2,
+.about-us h2 {
+    margin-bottom: 10px;
+    font-size: 22px; /* Increase font size */
+    color: #555;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+/* CSS for popular events */
+.popular-events .events-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Adjust gap */
+    margin-top: 20px;
+}
+
+.popular-events .event {
+    flex: 0 0 calc(33.33% - 10px);
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.popular-events .event:hover {
+    transform: translateY(-5px);
+}
+
+.popular-events .event img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.popular-events .event h3 {
+    margin-top: 10px;
+    font-size: 18px; /* Increase font size */
+    color: #333;
+}
+
+/* CSS for about us section */
+.about-us ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.about-us ul li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.about-us ul li:before {
+    content: "🎇";
+    margin-right: 8px;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.about-us ul li:hover {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}

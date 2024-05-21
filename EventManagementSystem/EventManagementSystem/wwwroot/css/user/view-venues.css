@@ -1,0 +1,41 @@
+/* view-venues.css */
+
+.view-venues {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-venues h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.view-venues table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.view-venues th,
+.view-venues td {
+    padding: 12px;
+    text-align: left;
+}
+
+.view-venues th {
+    background-color: #f7f7f7;
+}
+
+.view-venues td {
+    background-color: #fff;
+}
+
+.view-venues tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}
+
+.event-venues {
+    margin-bottom: 2rem;
+}

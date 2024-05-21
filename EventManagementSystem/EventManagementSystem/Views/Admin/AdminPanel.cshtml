@@ -1,0 +1,233 @@
+@using EventManagementSystem.Models.UserRelated
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AccountModel> SignInManager
+@inject UserManager<AccountModel> UserManager
+@model EventManagementSystem.Models.Admin.AdminPanelViewModel
+
+@{
+var currentUser = await UserManager.GetUserAsync(User);
+
+if (currentUser!.Role == EventManagementSystem.Utils.Enums.UserRole.Admin)
+{
+    <link rel="stylesheet" href="~/css/user/shared-styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/admin/admin-panel.css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <div class="nav-links">
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewProfile">Profile</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewEvents">Events</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewGuests">Guests</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewVenues">Venues</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h2 class="title">Admin Panel</h2>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="events-tab" data-toggle="tab" href="#events" role="tab" aria-controls="events" aria-selected="false">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="guests-tab" data-toggle="tab" href="#guests" role="tab" aria-controls="guests" aria-selected="false">Guests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="venues-tab" data-toggle="tab" href="#venues" role="tab" aria-controls="venues" aria-selected="false">Venues</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+                    <h3>User Management</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var user in Model.AccModels)
+                        {
+                        <tr data-userid="@user.Id">
+                            <td><span class="editableUser" data-field="Name">@user.FirstName</span></td>
+                            <td><span class="editableUser" data-field="Name">@user.LastName</span></td>
+                            <td><span class="editableUser" data-field="Email">@user.Email</span></td>
+                            <td><span class="editableUser" data-field="PhoneNumber">@user.PhoneNumber</span></td>
+                            <td><span class="editableUser" data-field="Role">@user.Role</span></td>
+                            <td>
+                                <div class="admin-buttons">
+                                    <a asp-controller="Admin" asp-action="EditUser" asp-route-userId="@user.Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <form asp-controller="Admin" asp-action="DeleteUser" asp-route-userId="@user.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                               
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    <a asp-controller="Admin" asp-action="AddUser" class="btn btn-primary">Add new user</a>
+                </div>
+
+                <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+                    <h3>Event Management</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Organizer Id</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Registered At</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var eventModel in Model.EventModels)
+                        {
+                        <tr data-eventId="@eventModel.EventId">
+                            <td>@eventModel.EventId</td>
+                            <td><span data-field="OrganizerId">@eventModel.OrganizerId</span></td>
+                            <td><span data-field="EventName">@eventModel.EventName</span></td>
+                            <td><span data-field="EventDate">@eventModel.EventDate.ToShortDateString()</span></td>
+                            <td><span data-field="Type">@eventModel.Type</span></td>
+                            <td>
+                                    <span data-field="EventDescription">
+                                        <span class="details" data-toggle="tooltip" title="@eventModel.EventDescription">
+                                            @if (eventModel.EventDescription.Length > 15)
+                                            {
+                                            @eventModel.EventDescription.Substring(0, 15)
+                                            <text>...</text>
+                                            }
+                                            else
+                                            {
+                                            @eventModel.EventDescription
+                                            }
+                                        </span>
+                                    </span>
+                            </td>
+                            <td><span data-field="RegisteredAt">@eventModel.RegisteredAt</span></td>
+                            <td>
+                                <div class="admin-buttons">
+                                    <a asp-controller="Admin" asp-action="EditEvent" asp-route-eventId="@eventModel.EventId" class="btn btn-sm btn-primary">Edit</a>
+                                    <form asp-controller="Admin" asp-action="DeleteEvent" asp-route-eventId="@eventModel.EventId" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    <a asp-controller="Admin" asp-action="AddEvent" class="btn btn-primary">Add new event</a>
+                </div>
+
+                <div class="tab-pane fade" id="guests" role="tabpanel" aria-labelledby="guests-tab">
+                    <h3>Guest Management</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var guest in Model.GuestModels)
+                        {
+                        <tr>
+                            <td>@guest.FirstName</td>
+                            <td>@guest.LastName</td>
+                            <td>@guest.Email</td>
+                            <td>
+                                <div class="admin-buttons">
+                                    <a asp-action="EditGuest" asp-route-guestId="@guest.GuestId" class="btn btn-sm btn-primary">Edit</a>
+                                    <form asp-action="DeleteGuest" asp-route-guestId="@guest.GuestId" method="post" style="display:inline">
+                                        <input type="submit" value="Delete" class="btn btn-sm btn-danger"/>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    <a asp-action="AddGuest" class="btn btn-primary">Add Guest</a>
+                </div>
+
+                <div class="tab-pane fade" id="venues" role="tabpanel" aria-labelledby="venues-tab">
+                    <h3>Venue Management</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Venue Name</th>
+                            <th>Address</th>
+                            <th>Capacity</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var venue in Model.VenueModels)
+                        {
+                        <tr>
+                            <td>@venue.VenueName</td>
+                            <td>@venue.Address</td>
+                            <td>@venue.Capacity</td>
+                            <td>
+                                <div class="admin-buttons">
+                                    <a asp-action="EditVenue" asp-route-venueId="@venue.VenueId" class="btn btn-sm btn-primary">Edit</a>
+                                    <form asp-action="DeleteVenue" asp-route-venueId="@venue.VenueId" method="post" style="display:inline">
+                                        <input type="submit" value="Delete" class="btn btn-sm btn-danger"/>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    <a asp-action="AddVenue" class="btn btn-primary">Add Venue</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+}
+
+@section scripts {
+<script>
+    $('#myTab a').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>
+}

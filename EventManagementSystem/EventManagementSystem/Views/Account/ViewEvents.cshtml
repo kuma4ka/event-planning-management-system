@@ -1,0 +1,90 @@
+@using EventManagementSystem.Models.UserRelated
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AccountModel> SignInManager
+@inject UserManager<AccountModel> UserManager
+@model List<EventManagementSystem.Models.EventModel>
+
+@{
+ViewData["Title"] = "View Events";
+}
+
+<link rel="stylesheet" href="~/css/user/shared-styles.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/user/view-events.css" asp-append-version="true"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <div class="nav-links">
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewProfile">Profile</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewEvents">Events</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewGuests">Guests</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewVenues">Venues</a>
+                </div>
+                @{
+                var user = await UserManager.GetUserAsync(User);
+                if (user!.Role == EventManagementSystem.Utils.Enums.UserRole.Admin)
+                {
+                <div>
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                </div>
+                }
+                }
+            </div>
+        </div>
+
+        <div class="view-events col-md-8">
+            <h2>View Events</h2>
+            @if (Model.Any())
+            {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var eventModel in Model)
+                {
+                <tr>
+                    <td>@eventModel.EventName</td>
+                    <td>@eventModel.EventDate.ToShortDateString()</td>
+                    <td>@eventModel.Type</td>
+                    <td>
+                        <span data-toggle="tooltip" title="@eventModel.EventDescription">
+                            @if (eventModel.EventDescription.Length > 30)
+                            {
+                            @eventModel.EventDescription.Substring(0, 30)
+                            <text>...</text>
+                            }
+                            else
+                            {
+                            @eventModel.EventDescription
+                            }
+                        </span>
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+            }
+            else
+            {
+            <p>No events found.</p>
+            }
+        </div>
+    </div>
+</div>

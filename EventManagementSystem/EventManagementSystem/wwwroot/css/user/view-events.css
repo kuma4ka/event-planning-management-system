@@ -1,0 +1,37 @@
+/* view-events.css */
+
+.view-events {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-events h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.view-events table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.view-events th,
+.view-events td {
+    padding: 12px;
+    text-align: left;
+}
+
+.view-events th {
+    background-color: #f7f7f7;
+}
+
+.view-events td {
+    background-color: #fff;
+}
+
+.view-events tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}

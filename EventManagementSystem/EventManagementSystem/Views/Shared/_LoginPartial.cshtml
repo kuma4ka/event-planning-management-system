@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Identity
+@using EventManagementSystem.Models.UserRelated
+@inject SignInManager<AccountModel> SignInManager
+@inject UserManager<AccountModel> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (UserManager.GetUserAsync(User).Result == null)
+        {
+            <li class="nav-item">
+                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <button type="submit" class="btn btn-link nav-link">Log out</button>
+                </form>
+            </li>
+        }
+        else{
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Account" asp-action="ViewProfile">
+
+                    @{
+                        var accountModel = UserManager.GetUserAsync(User).Result;
+                    }
+                    @if (accountModel != null)
+                    {
+                        <img src="~/lib/images/user.png" width="30px" height="30px" alt="Profile Icon">
+                    }
+                </a>
+            </li>
+            <li class="nav-item">
+                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <button type="submit" class="btn btn-link nav-link">
+                        <img src="~/lib/images/logout.png" width="30px" height="30px" alt="Log out Icon">
+                    </button>
+                </form>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Registration</a>
+        </li>
+    }
+</ul>

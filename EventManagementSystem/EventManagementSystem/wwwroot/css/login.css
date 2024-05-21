@@ -1,0 +1,106 @@
+/* Custom CSS styles for login form */
+h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container-login {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-form .checkbox-label {
+    margin: 20px 0;
+}
+
+.login-form input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="checkbox"] {
+    width: calc(100% - 24px); /* Adjusted to account for padding */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form .checkbox .form-check-label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.login-form .checkbox .form-check-input {
+    opacity: 100%;
+    cursor: pointer;
+    height: 3px;
+    width: 3px;
+}
+
+/* Style the custom checkbox */
+.login-form .checkbox .checkmark {
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-form .checkbox .form-check-input:checked + .checkmark {
+    background-color: #007bff;
+}
+
+.login-form .checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    border-radius: 1px;
+}
+
+.login-form .btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.login-form .text-danger {
+    font-size: 14px;
+}

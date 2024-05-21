@@ -1,0 +1,11 @@
+@model EventManagementSystem.Models.EventModel
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="EventId" />
+    <p>Are you sure you want to delete the event "@Model.EventName"?</p>
+    <button type="submit">Delete</button>
+</form>
+
+<nav class="links">
+    <a asp-controller="Event" asp-action="List">Return</a>
+</nav>

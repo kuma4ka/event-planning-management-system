@@ -1,0 +1,42 @@
+@model EventManagementSystem.Models.VenueSelectionModel
+
+@{
+    ViewData["Title"] = "Select Venue";
+}
+
+<link rel="stylesheet" href="~/css/venue/choose-venue.css" asp-append-version="true">
+
+
+<h1 class="page-title">Select Venue</h1>
+
+<nav class="links">
+    <a class="return-link" asp-controller="Event" asp-action="List">Return</a>
+</nav>
+@if (Model.Venues.Any())
+{
+    <div class="venue-grid">
+        @foreach (var venue in Model.Venues)
+        {
+            <div class="venue-item" onclick="selectVenue(@venue.VenueId)">
+                <h2 class="venue-name">@venue.VenueName</h2>
+                <p class="venue-address">@venue.Address</p>
+                <img class="venue-image" src="@venue.ImageUrl" alt="@venue.VenueName" />
+            </div>
+        }
+    </div>
+}
+
+<form id="venueForm" asp-action="Select" method="post">
+    <input type="hidden" asp-for="EventId" />
+    <input type="hidden" asp-for="OrganizerId" />
+    <input type="hidden" id="VenueId" name="VenueId" />
+    <button type="submit" style="display:none;">Select Venue</button>
+</form>
+
+<script>
+    function selectVenue(venueId) {
+        document.getElementById('VenueId').value = venueId;
+        document.getElementById('venueForm').submit();
+    }
+</script>
+

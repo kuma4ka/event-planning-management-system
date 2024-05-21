@@ -1,0 +1,56 @@
+@model EventManagementSystem.Models.GuestModel
+
+@{
+    ViewData["Title"] = "Edit Guest";
+}
+
+<link rel="stylesheet" href="~/css/admin/edit-guest.css" asp-append-version="true">
+
+<div class="container-edit">
+    <h2>Edit Guest</h2>
+
+    <form asp-action="EditGuest" method="post">
+        <input type="hidden" asp-for="GuestId" />
+        <div class="form-group">
+            <label asp-for="EventId" class="control-label"></label>
+            <input asp-for="EventId" class="form-control" />
+            <span asp-validation-for="EventId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrganizerId" class="control-label"></label>
+            <input asp-for="OrganizerId" class="form-control" />
+            <span asp-validation-for="OrganizerId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="AdminPanel">Back to Admin Panel</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

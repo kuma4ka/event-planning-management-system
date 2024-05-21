@@ -1,0 +1,58 @@
+@model EventManagementSystem.Models.EventDetailsViewModel
+
+<link rel="stylesheet" href="~/css/event/details.css" asp-append-version="true">
+
+<h1 class="page-title">@Model.Event.EventName Details</h1>
+
+
+<nav class="links">
+    <a class="link edit-link" asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Event.EventId">Edit</a>
+    <a class="link delete-link" asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Event.EventId">Delete</a>
+    <a class="link return-link" asp-controller="Event" asp-action="List">Return</a>
+</nav>
+
+<section class="event-details-container">
+
+    <section class="event-details section-element">
+        <div class="section-element-header">
+            <h2 class="event-name">@Model.Event.EventName</h2>
+        </div>
+        <p class="event-date">Date: @Model.Event.EventDate.ToShortDateString()</p>
+        <p class="event-type">Type: @Model.Event.Type</p>
+        <p class="event-description">Description: @Model.Event.EventDescription</p>
+    </section>
+
+    <section class="venue-details section-element">
+        <h2 class="venue-heading">Venue</h2>
+        @if (Model.Venue != null)
+        {
+        <p class="venue-name">Name: @Model.Venue.VenueName</p>
+        <p class="venue-address">Address: @Model.Venue.Address</p>
+        <img class="venue-image" src="@Model.Venue.ImageUrl" alt="@Model.Venue.VenueName" />
+        }
+        else
+        {
+        <p class="no-venue">No venue selected.</p>
+        }
+    </section>
+
+    <div class="guests-details section-element">
+        <h2 class="guests-heading">Guests</h2>
+        @if (Model.Guests.Any())
+        {
+        <ul class="guests-list">
+            @foreach (var guest in Model.Guests)
+            {
+            <li class="guest-item">
+                <span class="guest-emoji">🙋‍♂️</span>@guest.FirstName @guest.LastName (@guest.Email)
+            </li>
+            }
+        </ul>
+        }
+        else
+        {
+        <p class="no-guests">No guests added.</p>
+        }
+    </div>
+</section>
+

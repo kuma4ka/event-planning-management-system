@@ -1,0 +1,41 @@
+/* view-guests.css */
+
+.view-guests {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-guests h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.view-guests table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.view-guests th,
+.view-guests td {
+    padding: 12px;
+    text-align: left;
+}
+
+.view-guests th {
+    background-color: #f7f7f7;
+}
+
+.view-guests td {
+    background-color: #fff;
+}
+
+.view-guests tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}
+
+.event-guests {
+    margin-bottom: 2rem;
+}

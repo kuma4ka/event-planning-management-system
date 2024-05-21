@@ -1,0 +1,126 @@
+/* Styles for the main heading (h1) */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
+    margin: 20px auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Overflow control */
+    text-overflow: ellipsis; /* Handle text overflow */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the events list */
+.events-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto; /* Horizontal overflow control */
+}
+
+/* Styles for individual event items */
+.event-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.4), rgba(255, 255, 255, 0.3));
+    transition: transform 0.2s;
+    overflow: hidden; /* Overflow control */
+    text-overflow: ellipsis; /* Handle text overflow */
+    min-height: 150px;
+    max-height: 450px;
+}
+
+.event-item:hover {
+    transform: translateY(-5px);
+}
+
+.event-item h2 {
+    margin-top: 0;
+    text-align: center;
+    overflow: hidden; /* Overflow control */
+    text-overflow: ellipsis; /* Handle text overflow */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.event-item p {
+    margin: 5px 0;
+    overflow: hidden; /* Overflow control */
+    text-overflow: ellipsis; /* Handle text overflow */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+/* Styles for links inside event items */
+.event-item a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    overflow: hidden; /* Overflow control */
+    white-space: nowrap; /* Prevent wrapping */
+    text-overflow: ellipsis; /* Handle text overflow */
+}
+
+.event-item a:hover {
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.event-item a:active {
+    background-color: #003d7a;
+    color: #fff;
+}
+
+.info {
+    height: 200px;
+}
+
+/* Styles for the alert box */
+.alert {
+    padding: 15px;
+    margin: 20px auto;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: hidden; /* Overflow control */
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Styles for the "No events found" message */
+.no-events-message {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    overflow: hidden; /* Overflow control */
+}
+
+.no-events-message a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+    overflow: hidden; /* Overflow control */
+    white-space: nowrap; /* Prevent wrapping */
+    text-overflow: ellipsis; /* Handle text overflow */
+}
+
+.no-events-message a:hover {
+    color: #0056b3;
+}

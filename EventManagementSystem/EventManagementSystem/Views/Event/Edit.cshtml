@@ -1,0 +1,42 @@
+@model EventManagementSystem.Models.EventModel
+
+<link rel="stylesheet" href="~/css/event/edit.css" asp-append-version="true">
+
+<h1 class="page-title">Edit @Model.EventName</h1>
+
+<form asp-action="Edit" method="post" class="edit-form-container">
+    <input type="hidden" asp-for="EventId" />
+    @if (Model.VenueId != 0)
+    {
+    <input type="hidden" asp-for="VenueId" />
+    }
+    <div class="form-group">
+        <label asp-for="EventName" class="form-label"></label>
+        <input asp-for="EventName" class="form-input" />
+        <span asp-validation-for="EventName" class="form-validation"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EventDate" class="form-label"></label>
+        <input asp-for="EventDate" type="date" class="form-date" />
+        <span asp-validation-for="EventDate" class="form-validation"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type" class="form-label">Event Type: </label>
+        <select id="Type" name="Type" class="form-select">
+            <option disabled selected>Select</option>
+            @foreach (var type in Enum.GetValues(typeof(EventManagementSystem.Utils.Enums.EventType)))
+            {
+            <option value="@type">@type</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="EventDescription" class="form-label"></label>
+        <textarea asp-for="EventDescription" class="form-textarea"></textarea>
+        <span asp-validation-for="EventDescription" class="form-validation"></span>
+    </div>
+    <div class="navs">
+        <button type="submit" class="btn-save">Save Changes</button>
+        <a asp-controller="Event" asp-action="List" class="return-link">Return</a>
+    </div>
+</form>

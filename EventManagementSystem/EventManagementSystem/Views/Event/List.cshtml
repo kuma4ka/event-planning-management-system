@@ -1,0 +1,48 @@
+@model List<EventManagementSystem.Models.EventModel>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/event/dashboard.css" asp-append-version="true"/>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Events</h1>
+
+@if (Model.Any())
+{
+    <div class="events-list">
+        @foreach (var eventModel in Model)
+        {
+            <div class="event-item">
+                <div class="info">
+                    <h2>@eventModel.EventName</h2>
+                    <p>Date: @eventModel.EventDate.ToShortDateString()</p>
+                    <p>Type: @eventModel.Type</p>
+                    <p>Description: @eventModel.EventDescription</p>
+                </div>
+                <nav class="links">
+                    <a asp-controller="Event" asp-action="Details" asp-route-id="@eventModel.EventId" class="link">View</a>
+                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@eventModel.EventId" class="link">Edit</a>
+                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@eventModel.EventId" class="link">Delete</a>
+                    <a asp-controller="Venue" asp-action="Select" asp-route-eventId="@eventModel.EventId" class="link">Choose a venue</a>
+                    <a asp-controller="Guest" asp-action="Create" asp-route-eventId="@eventModel.EventId" class="link">Add a guest</a>
+                    <a asp-controller="Guest" asp-action="List" asp-route-eventId="@eventModel.EventId" class="link">View guests</a>
+                </nav>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="no-events-message">
+        <p>No events found. <a asp-controller="Event" asp-action="Create">Create a new event</a>.</p>
+    </div>
+
+}

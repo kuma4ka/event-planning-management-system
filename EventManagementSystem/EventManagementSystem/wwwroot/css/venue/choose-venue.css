@@ -1,0 +1,104 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 3em;
+    color: #222;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Venue Grid */
+.venue-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Venue Item */
+.venue-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    flex: 1 0 30%;
+    background: linear-gradient(to top, rgba(203, 203, 255, 0.4), rgba(255, 255, 255, 0.4));
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.venue-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Venue Name */
+.venue-name {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Venue Address */
+.venue-address {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Venue Image */
+.venue-image {
+    width: 100%;
+    max-height: 130px;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: block;
+}
+
+.links {
+    text-align: center;
+    
+}
+
+/* Return Link */
+.return-link {
+    background: linear-gradient(to bottom, rgba(203, 203, 255, 0.3), rgba(255, 255, 255, 0.3));
+    display: inline-block;
+    margin: 15px;
+    color: #007bff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    justify-content: center;
+}
+
+.return-link:hover {
+    background-color: #0056b3;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.return-link:active {
+    background-color: #003d7a;
+    color: #fff;
+}

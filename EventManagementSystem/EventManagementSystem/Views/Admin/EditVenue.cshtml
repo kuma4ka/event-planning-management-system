@@ -1,0 +1,61 @@
+@model EventManagementSystem.Models.VenueModel
+
+@{
+    ViewData["Title"] = "Edit Venue";
+}
+
+<link rel="stylesheet" href="~/css/admin/edit-venue.css" asp-append-version="true">
+
+<div class="container-edit">
+    <h2>Edit Venue</h2>
+
+    <form asp-action="EditVenue" method="post">
+        <input type="hidden" asp-for="VenueId" />
+        <div class="form-group">
+            <label asp-for="EventId" class="control-label"></label>
+            <input asp-for="EventId" class="form-control" />
+            <span asp-validation-for="EventId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrganizerId" class="control-label"></label>
+            <input asp-for="OrganizerId" class="form-control" />
+            <span asp-validation-for="OrganizerId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VenueName" class="control-label"></label>
+            <input asp-for="VenueName" class="form-control" />
+            <span asp-validation-for="VenueName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Capacity" class="control-label"></label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUrl" class="control-label"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="AdminPanel">Back to Admin Panel</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

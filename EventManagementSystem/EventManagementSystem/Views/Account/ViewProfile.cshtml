@@ -1,0 +1,81 @@
+﻿@using EventManagementSystem.Models.UserRelated
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AccountModel> SignInManager
+@inject UserManager<AccountModel> UserManager
+@model EventManagementSystem.Models.UserRelated.ProfileViewModel
+
+<link rel="stylesheet" href="~/css/user/shared-styles.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/user/view-profile.css" asp-append-version="true"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <div class="nav-links">
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewProfile">Profile</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewEvents">Events</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewGuests">Guests</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewVenues">Venues</a>
+                </div>
+                @{
+                var user = await UserManager.GetUserAsync(User);
+                if (user!.Role == EventManagementSystem.Utils.Enums.UserRole.Admin)
+                {
+                <div>
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                </div>
+                }
+                }
+            </div>
+        </div>
+        
+        <div class="content-section col-md-6">
+            <h2>Profile info</h2>
+
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+
+            @if (Model.Changed)
+            {
+                <div class="alert alert-success" role="alert">
+                    Profile information has been successfully updated.
+                </div>
+
+                <p>
+                    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+                </p>
+            }
+        </div>
+    </div>
+</div>

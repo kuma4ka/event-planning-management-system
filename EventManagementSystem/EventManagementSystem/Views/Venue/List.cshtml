@@ -1,0 +1,13 @@
+<h1>Venues</h1>
+@foreach (var venue in Model)
+{
+    <div>
+        <h2>@venue.VenueName</h2>
+        <p>@venue.Address</p>
+        <p>Capacity: @venue.Capacity</p>
+        <img src="@venue.ImageUrl" alt="@venue.VenueName" />
+        <a asp-controller="Venue" asp-action="Select" asp-route-id="@venue.VenueId">Select</a>
+    </div>
+}
+
+<a asp-controller="Event" asp-action="List">Return</a>

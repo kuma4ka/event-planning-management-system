@@ -1,0 +1,73 @@
+﻿@{
+ViewData["Title"] = "Welcome!";
+}
+
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true"/>
+
+<div class="container-homepage">
+    <h1>Unlock Your Next Unforgettable Event. Explore EPMS for Exclusive Deals!</h1>
+    <div class="section-centered">
+        @{
+        if (User.Identity.IsAuthenticated)
+        {
+            <form method="post" asp-action="List" asp-controller="Event">
+                <button type="submit" class="btn-create-event">Create Your Unforgettable Event!</button>
+            </form>
+        }
+        else
+        {
+            <form method="post" asp-action="Login" asp-controller="Account">
+                <button type="submit" class="btn-create-event">Create Your Unforgettable Event!</button>
+            </form>
+        }
+        }
+        
+    </div>
+
+    <section class="content">
+        <section class="popular-events">
+            <h2>Popular Events</h2>
+            <div class="events-grid">
+                <div class="event">
+                    <img src="~/lib/images/SummerMusicFestival.jpg" alt="Summer Music Festival">
+                    <h3>Summer Music Festival</h3>
+                </div>
+                <div class="event">
+                    <img src="~/lib/images/AnnualCharityGala.jpg" alt="Annual Charity Gala">
+                    <h3>Annual Charity Gala</h3>
+                </div>
+                <div class="event">
+                    <img src="~/lib/images/BusinessConference2024.jpg" alt="Business Conference 2024">
+                    <h3>Business Conference 2024</h3>
+                </div>
+                <div class="event">
+                    <img src="~/lib/images/InternationalFoodFestival.jpg" alt="International Food Festival">
+                    <h3>International Food Festival</h3>
+                </div>
+                <div class="event">
+                    <img src="~/lib/images/TechExpo.jpg" alt="Tech Expo">
+                    <h3>Tech Expo</h3>
+                </div>
+                <div class="event">
+                    <img src="~/lib/images/FashionShowExtravaganza.jpg" alt="Fashion Show Extravaganza">
+                    <h3>Fashion Show Extravaganza</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-us">
+            <h2>About Us</h2>
+            <ul>
+                <li>EPMS: Your go-to for event planning.</li>
+                <li>User-friendly tools for flawless events.</li>
+                <li>Years of industry experience.</li>
+                <li>Streamlined planning process.</li>
+                <li>Exceptional customer support.</li>
+                <li>Events of any size or type.</li>
+                <li>Unparalleled solutions and satisfaction.</li>
+                <li>Let's make your events unforgettable!</li>
+            </ul>
+        </section>
+
+    </section>
+</div>

@@ -1,0 +1,99 @@
+@using EventManagementSystem.Models.UserRelated
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AccountModel> SignInManager
+@inject UserManager<AccountModel> UserManager
+@model List<EventManagementSystem.Models.VenueModel>
+
+@{
+ViewData["Title"] = "View Venues";
+}
+
+<link rel="stylesheet" href="~/css/user/shared-styles.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/user/view-venues.css" asp-append-version="true"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 offset-md-2">
+            <div class="nav-links">
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewProfile">Profile</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewEvents">Events</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewGuests">Guests</a>
+                </div>
+                <div class="mb-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="ViewVenues">Venues</a>
+                </div>
+                @{
+                var user = await UserManager.GetUserAsync(User);
+                if (user!.Role == EventManagementSystem.Utils.Enums.UserRole.Admin)
+                {
+                <div>
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                </div>
+                }
+                }
+            </div>
+        </div>
+
+        <div class="view-venues col-md-8">
+            <h2>View Venues</h2>
+
+            @if (Model.Any())
+            {
+            var groupedVenues = Model.GroupBy(v => v.EventId);
+
+            foreach (var group in groupedVenues)
+            {
+            <div class="event-venues">
+                <h3>Event @group.Key</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Capacity</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var venue in group)
+                    {
+                    <tr>
+                        <td>@venue.VenueName</td>
+                        <td>@venue.Address</td>
+                        <td>@venue.Capacity</td>
+                        <td>
+                            <span data-toggle="tooltip" title="@venue.Description">
+                                @if (venue.Description.Length > 30)
+                                {
+                                @venue.Description.Substring(0, 30)
+                                <text>...</text>
+                                }
+                                else
+                                {
+                                @venue.Description
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            }
+            }
+            else
+            {
+            <p>No venues found.</p>
+            }
+        </div>
+    </div>
+</div>
